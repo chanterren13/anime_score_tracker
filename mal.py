@@ -11,6 +11,8 @@ class mal():
 
         animes = self.driver.find_element_by_css_selector('.seasonal-anime-list')
         animes = animes.find_elements(By.CSS_SELECTOR, '.seasonal-anime')
+        total_scores = pd.DataFrame(columns=['name', 'source', 'week', 'score'])
+
         for anime in animes:
             name = anime.find_element(By.CSS_SELECTOR, '.link-title')
             score = anime.find_element(By.CSS_SELECTOR, '.score-label')
@@ -23,3 +25,8 @@ class mal():
         total_scores = total_scores[:9]
 
         return total_scores
+
+if __name__ == '__main__':
+    myanilist = mal(webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe'))
+    animes = myanilist.pull_data(1)
+    print(animes['name'])
