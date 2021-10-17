@@ -2,5 +2,9 @@
 .venv
 env/
 venv/
-.anime_score_tracker
 anime_score_tracker/
+bin/
+lib/
+share/
+include/
+lib64/
