@@ -22,11 +22,10 @@ class mal():
 
         total_scores = total_scores[total_scores.score != 'N/A']
         total_scores.sort_values(by='score', inplace=True, ascending=False)
-        total_scores = total_scores[:9]
+        return total_scores[:9]
 
-        return total_scores
 
 if __name__ == '__main__':
     myanilist = mal(webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe'))
     animes = myanilist.pull_data(1)
-    print(animes['name'])
+    print(animes)
