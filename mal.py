@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 class mal():
     def __init__(self, driver):
         self.driver = driver
+        self.source = 'MAL'
 
     def pull_data(self, week):
         self.driver.get('https://myanimelist.net/anime/season')
@@ -17,7 +18,7 @@ class mal():
             name = anime.find_element(By.CSS_SELECTOR, '.link-title')
             score = anime.find_element(By.CSS_SELECTOR, '.score-label')
             print(name.text +': '+score.text)
-            anime_info = pd.DataFrame([[name.text, 'MAL', week, score.text]], columns=['name', 'source', 'week', 'score'])
+            anime_info = pd.DataFrame([[name.text, self.source, week, score.text]], columns=['name', 'source', 'week', 'score'])
             total_scores = total_scores.append(anime_info)
 
         total_scores = total_scores[total_scores.score != 'N/A']
