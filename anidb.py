@@ -21,13 +21,13 @@ class anidb():
                 score = average.find_element(By.CSS_SELECTOR, '.value').text
             except NoSuchElementException:
                 score = 'N/A'
-            print(name + ': ' + score)
+            #print(name + ': ' + score)
             anime_info = pd.DataFrame([[name, self.source, week, score]], columns=['name', 'source', 'week', 'score'])
             total_scores = total_scores.append(anime_info)
 
         total_scores = total_scores[total_scores.score != 'N/A']
         total_scores.sort_values(by='score', inplace=True, ascending=False)
-        return total_scores[:9]
+        return total_scores[:10]
 
 if __name__ == '__main__':
     ani = anidb(webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe'))

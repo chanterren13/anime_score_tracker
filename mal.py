@@ -17,13 +17,13 @@ class mal():
         for anime in animes:
             name = anime.find_element(By.CSS_SELECTOR, '.link-title')
             score = anime.find_element(By.CSS_SELECTOR, '.score-label')
-            print(name.text +': '+score.text)
+            #print(name.text +': '+score.text)
             anime_info = pd.DataFrame([[name.text, self.source, week, score.text]], columns=['name', 'source', 'week', 'score'])
             total_scores = total_scores.append(anime_info)
 
         total_scores = total_scores[total_scores.score != 'N/A']
         total_scores.sort_values(by='score', inplace=True, ascending=False)
-        return total_scores[:9]
+        return total_scores[:10]
 
 
 if __name__ == '__main__':
