@@ -17,7 +17,8 @@ class anidb():
         for anime in animes:
             name = anime.find_element(By.CSS_SELECTOR, '.name-colored').text
             try:
-                score = anime.find_element(By.CSS_SELECTOR, '.value').text
+                average = anime.find_element(By.CSS_SELECTOR, '.average')
+                score = average.find_element(By.CSS_SELECTOR, '.value').text
             except NoSuchElementException:
                 score = 'N/A'
             print(name + ': ' + score)
@@ -29,6 +30,7 @@ class anidb():
         return total_scores[:9]
 
 if __name__ == '__main__':
-    ani = anidb()
-    ani.pull_data(1)
+    ani = anidb(webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe'))
+    df = ani.pull_data(1)
+    print(df)
 
