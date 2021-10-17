@@ -14,12 +14,11 @@ else:
 
 driver = webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe')
 adb = anidb.anidb(driver)
-total_scores = total_scores.append(adb.pull_data(week))
+total_scores = total_scores.append(adb.pull_data(week), ignore_index=False)
 
 myanilist = mal.mal(driver)
-total_scores = total_scores.append(myanilist.pull_data(week))
-
+total_scores = total_scores.append(myanilist.pull_data(week), ignore_index=False)
 
 print(total_scores)
 
-
+total_scores.to_csv('scores/anime_scores.csv', index=False)
